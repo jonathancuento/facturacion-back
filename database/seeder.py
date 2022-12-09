@@ -1,6 +1,6 @@
 import sqlite3 as sql
 
-DB_PATH = ".\\billing.db"
+DB_PATH = ".\\database\\billing.db"
 
 def createDB():
     conn = sql.connect(DB_PATH)
@@ -11,7 +11,7 @@ def createDB():
             nombre text,
             descripcion text,
             precio numeric,
-            cantida integer,
+            cantidad integer,
             PRIMARY KEY(id_producto)
         );
         CREATE TABLE FACTURA (
@@ -57,10 +57,10 @@ def addData():
         ('1', 'Juan Perez', '809-555-5555', 'Santo Domingo'),
         ('2', 'Maria Perez', '809-555-5555', 'Santo Domingo'),
     ]
-    cursor.executemany("INSERT INTO PRODUCTOS VALUES (?,?,?,?,?)", dataPRODUCTOS)
-    cursor.executemany("INSERT INTO FACTURA VALUES (?,?,?,?)", dataFACTURA)
-    cursor.executemany("INSERT INTO COMPRAS VALUES (?,?,?)", dataCOMPRAS)
-    cursor.executemany("INSERT INTO CLIENTE VALUES (?,?,?,?)", dataCLIENTE)
+    cursor.executemany(f"INSERT INTO PRODUCTOS VALUES (?,?,?,?,?)", dataPRODUCTOS)
+    cursor.executemany(f"INSERT INTO FACTURA VALUES (?,?,?,?)", dataFACTURA)
+    cursor.executemany(f"INSERT INTO COMPRAS VALUES (?,?,?)", dataCOMPRAS)
+    cursor.executemany(f"INSERT INTO CLIENTE VALUES (?,?,?,?)", dataCLIENTE)
     conn.commit()
     conn.close()
 
